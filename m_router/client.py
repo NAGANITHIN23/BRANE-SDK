@@ -65,7 +65,12 @@ class RouterClient:
         self._post("/v1/outcomes", payload, timeout_s=self.config.timeout_s)
 
     def health(self) -> dict[str, Any]:
-        return self._get("/v1/health", timeout_s=self.config.timeout_s)
+        try:
+            return self._get("/v1/health", timeout_s=self.config.timeout_s)
+        except MRouterUnavailableError as exc:
+            if "404:" not in str(exc):
+                raise
+            return self._get("/healthz", timeout_s=self.config.timeout_s)
 
     def _url(self, path: str) -> str:
         return self.config.base_url.rstrip("/") + path

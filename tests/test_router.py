@@ -4,7 +4,7 @@ import asyncio
 
 import pytest
 
-from m_router import MRouter, current_context
+from m_router import MRouter, MRouterConfig, MRouterConfigurationError, current_context
 from m_router.testing import FakeChatModel, FakeRouterService
 
 
@@ -36,6 +36,21 @@ def test_decision_mode_routes_to_selected_local_model():
     assert service.route_requests[0].node_name == "plan"
     assert service.route_requests[0].messages is None
     assert response.response_metadata["m_router"]["selected_model"] == "openai:gpt-4o-mini"
+
+
+def test_config_reads_api_key_from_environment(monkeypatch):
+    monkeypatch.setenv("BRANE_API_KEY", "brane_test_env")
+
+    config = MRouterConfig()
+
+    assert config.api_key == "brane_test_env"
+
+
+def test_config_requires_api_key_when_environment_missing(monkeypatch):
+    monkeypatch.delenv("BRANE_API_KEY", raising=False)
+
+    with pytest.raises(MRouterConfigurationError):
+        MRouterConfig()
 
 
 def test_shadow_mode_uses_default_but_records_recommendation():

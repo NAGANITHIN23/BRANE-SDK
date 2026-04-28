@@ -1,18 +1,51 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "m-router"
+name = "brane-sdk"
 version = "0.1.0"
-description = "Python SDK for routing LLM calls through M-Router."
+description = "Python SDK for routing agent LLM calls through Brane."
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "M-Router" }]
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Membrane Labs", email = "ro@membranelabs.org" }]
+keywords = ["agents", "llm", "routing", "langgraph", "langchain", "observability"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
 dependencies = []
 
+[project.urls]
+Homepage = "https://brane.membranelabs.org"
+Repository = "https://github.com/NAGANITHIN23/BRANE-SDK"
+Issues = "https://github.com/NAGANITHIN23/BRANE-SDK/issues"
+
 [project.optional-dependencies]
+langchain = ["langchain-core>=0.3"]
+providers = [
+  "langchain-openai>=0.3",
+  "langchain-anthropic>=0.3",
+  "langchain-google-genai>=2.0",
+]
 test = ["pytest>=7.4"]
+dev = ["build>=1.2", "twine>=5.0", "pytest>=7.4"]
+
+[tool.setuptools.packages.find]
+include = ["m_router*"]
+
+[tool.setuptools.package-data]
+m_router = ["py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

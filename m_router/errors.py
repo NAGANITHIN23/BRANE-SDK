@@ -6,6 +6,10 @@ class MRouterUnavailableError(MRouterError):
     """Raised when the hosted M-Router service is unavailable."""
 
 
+class MRouterConfigurationError(MRouterError):
+    """Raised when required SDK configuration is missing or invalid."""
+
+
 class RouteDecisionError(MRouterError):
     """Raised when a route response is invalid or cannot be used."""
 

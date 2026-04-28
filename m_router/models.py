@@ -23,12 +23,12 @@ from .validation import validate_response
 class MRouter:
     def __init__(
         self,
-        api_key: str,
+        api_key: str | None = None,
         mode: str = "decision",
         app_name: str | None = None,
         models: dict[str, object] | None = None,
         default_model: str | object | None = None,
-        base_url: str = "https://api.m-router.ai",
+        base_url: str = "https://api.membranelabs.org",
         timeout_s: float = 2.0,
         fail_open: bool = True,
         send_prompts: bool = False,
