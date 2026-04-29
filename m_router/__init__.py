@@ -14,6 +14,8 @@ from .models import MRouter, MRouterChatModel
 from .schemas.events import TelemetryEvent
 from .schemas.route import ExecuteRequest, ExecuteResponse, RouteDecision, RouteRequest
 
+__version__ = "0.1.0"
+
 __all__ = [
     "ExecuteRequest",
     "ExecuteResponse",
@@ -32,5 +34,6 @@ __all__ = [
     "RoutingContext",
     "SchemaValidationError",
     "TelemetryEvent",
+    "__version__",
     "current_context",
 ]

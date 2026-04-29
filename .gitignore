@@ -4,6 +4,14 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .venv/
+venv/
 build/
 dist/
 *.egg-info/
+
+# Local integration checkouts and generated frontend assets.
+brane-cloud/
+brane-cloud-frontend/
+node_modules/
+.next/
+*.db

@@ -1,2 +1,11 @@
 include README.md
 include LICENSE
+include pyproject.toml
+recursive-include m_router py.typed
+recursive-exclude * __pycache__
+recursive-exclude * *.py[cod]
+prune brane-cloud
+prune brane-cloud-frontend
+prune dist
+prune build
+prune *.egg-info
